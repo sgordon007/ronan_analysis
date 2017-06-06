@@ -1,12 +1,7 @@
 __author__ = 'sgordon007'
 
-
-
 import pybedtools
-a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
-b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
-c = pybedtools.BedTool('BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bedgraph')
-#print (a).count()
+
 
 callFiles = []
 fileList = open('fastq_calling.bed.list.txt', 'r')
@@ -19,8 +14,23 @@ def BedgraphToUnion(callFiles):
     for callFile in callFiles:
         f = callFile.rstrip()
         print f
-        outFileName = f[:f.rfind('.')]+'.bedgraph'
-outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
+        outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
+        print outFileName
+"""
+        open(outFileName, 'w').close()
+        outputFile = open(outFileName, 'w')
+
+a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
+b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
+c = pybedtools.BedTool('BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bedgraph')
+#print (a).count()
+
+        outputFile.write(a.sort())
+        outputFile.write(a.sort())
+        outputFile.write(a.sort())
+inputFile.close()
+outputFile.close()
+"""
 
 """
 print a.sort()
@@ -29,23 +39,23 @@ print c.sort()
 """
 
 
-aS = a.sort()
+#aS = a.sort()
 """
 bS = b.sort()
 cS = c.sort()
 """
 
 
-print aS
+#print aS
 
 x = pybedtools.BedTool()
 #>>> a = pybedtools.example_bedtool('a.bed')
 #>>> b = pybedtools.example_bedtool('b.bed')
-result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
-print result
+#result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
+#print result
 
 
-call2properBedgraph(callFiles)
+#call2properBedgraph(callFiles)
 
 
 #bedAnalyze = BedTool('%s.bed'%(syntenicInputFiles[0][:syntenicInputFiles[0].rfind('.')])).sort()
