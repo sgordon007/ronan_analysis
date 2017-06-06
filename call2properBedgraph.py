@@ -26,7 +26,7 @@ def call2properBedgraph(callFiles):
             elif lineInList[4] == "UNK":
                 continue
             lineOutputList = [lineInList[0], int(lineInList[1]), int(lineInList[1])+1, genotype_num]
-            outputFile.write('%s\t%d\t%d\t%s\t%d\n' % tuple(lineOutputList))
+            outputFile.write('%s\t%d\t%d\t%d\n' % tuple(lineOutputList))
         inputFile.close()
         outputFile.close()
 
