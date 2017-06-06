@@ -1,10 +1,26 @@
 __author__ = 'sgordon007'
 
+
+
 import pybedtools
-a = pybedtools.BedTool('a.bedgraph')
-b = pybedtools.BedTool('b.bedgraph')
-c = pybedtools.BedTool('c.bedgraph')
+a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
+b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
+c = pybedtools.BedTool('BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bedgraph')
 #print (a).count()
+
+callFiles = []
+fileList = open('fastq_calling.bed.list.txt', 'r')
+for file in fileList:
+    file.strip()
+    callFiles.append(file)
+
+def BedgraphToUnion(callFiles):
+    """Takes a list of genotype files with only one column for pos and converts them to proper bedgraph format to be sorted"""
+    for callFile in callFiles:
+        f = callFile.rstrip()
+        print f
+        outFileName = f[:f.rfind('.')]+'.bedgraph'
+outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
 
 """
 print a.sort()
@@ -25,8 +41,12 @@ print aS
 x = pybedtools.BedTool()
 #>>> a = pybedtools.example_bedtool('a.bed')
 #>>> b = pybedtools.example_bedtool('b.bed')
-result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="genome.filename")
+result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
 print result
+
+
+call2properBedgraph(callFiles)
+
 
 #bedAnalyze = BedTool('%s.bed'%(syntenicInputFiles[0][:syntenicInputFiles[0].rfind('.')])).sort()
 
