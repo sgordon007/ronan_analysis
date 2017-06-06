@@ -19,6 +19,7 @@ def BedgraphToUnion(callFiles):
 """
         open(outFileName, 'w').close()
         outputFile = open(outFileName, 'w')
+saveas('snps-in-exons.bed')
 
 a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
 b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
