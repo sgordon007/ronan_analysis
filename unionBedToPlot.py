@@ -46,10 +46,11 @@ bS = b.sort()
 cS = c.sort()
 """
 
+BedgraphToUnion(callFiles)
 
 #print aS
 
-x = pybedtools.BedTool()
+#x = pybedtools.BedTool()
 #>>> a = pybedtools.example_bedtool('a.bed')
 #>>> b = pybedtools.example_bedtool('b.bed')
 #result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
