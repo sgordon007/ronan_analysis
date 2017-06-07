@@ -18,11 +18,11 @@ def call2properBedgraph(callFiles):
         for line in inputFile:
             lineInList = line.split()
             if lineInList[4] == "UCXX":
-                genotype_num = 1
+                genotype_num = float(1.0)
             elif lineInList[4] == "PNWH":
-                genotype_num = -1
+                genotype_num = float(-1.0)
             elif lineInList[4] == "HET":
-                genotype_num = 0.1
+                genotype_num = float(0.1)
             elif lineInList[4] == "UNK":
                 continue
             lineOutputList = [lineInList[0], int(lineInList[1]), int(lineInList[1])+1, genotype_num]
