@@ -50,11 +50,11 @@ bS = b.sort()
 cS = c.sort()
 """
 
-BedgraphToUnion(callFiles)
-
 if __name__ == "__main__":
-    import sys
-    BedgraphToUnion(int(sys.argv[1]))
+    BedgraphToUnion(callFiles)
+
+# import sys
+# BedgraphToUnion(int(sys.argv[1]))
 
 
 #print aS
