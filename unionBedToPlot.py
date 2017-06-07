@@ -15,11 +15,11 @@ def BedgraphToUnion(callFiles):
         f = callFile.rstrip()
         input_new = f[:f.rfind('.')]+'.bedgraph'
         # print input_new
-        a = pybedtools.BedTool(input_new)
+        a = pybedtools.BedTool(input_new).sort()
         outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
         # print outFileName
         a.saveas(outFileName)
-        
+
 """
         open(outFileName, 'w').close()
         outputFile = open(outFileName, 'w')
