@@ -29,7 +29,6 @@ def bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3])):
     outFileName = pref1 + '.' + pref2 + '.' + pref3 + '.' + 'union.bedgraph'
     x = pybedtools.BedTool()
     result = x.union_bedgraphs(i=[aT.fn, bT.fn, cT.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
-    print result
     result.saveas(outFileName)
 
 if __name__ == "__main__":
@@ -39,4 +38,4 @@ if __name__ == "__main__":
 
 #
 # BedgraphToUnion(int(sys.argv[1]))
-# unionBedToPlot.py BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.sorted.bedgraph BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.sorted.bedgraph BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.sorted.bedgraph
+# python unionBedToPlot.py BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.sorted.bedgraph BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.sorted.bedgraph BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.sorted.bedgraph
