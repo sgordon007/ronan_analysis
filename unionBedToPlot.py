@@ -1,7 +1,7 @@
 __author__ = 'sgordon007'
 
 import pybedtools
-
+import sys
 
 callFiles = []
 fileList = open('fastq_calling.bed.list.txt', 'r')
@@ -14,56 +14,31 @@ def BedgraphToUnion(callFiles):
     for callFile in callFiles:
         f = callFile.rstrip()
         input_new = f[:f.rfind('.')]+'.bedgraph'
-        # print input_new
         a = pybedtools.BedTool(input_new).sort()
         outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
-        # print outFileName
+        print 'creating:' + outFileName
         a.saveas(outFileName)
 
-"""
-        open(outFileName, 'w').close()
-        outputFile = open(outFileName, 'w')
-
-
-a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
-b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
-c = pybedtools.BedTool('BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bedgraph')
-#print (a).count()
-
-        outputFile.write(a.sort())
-        outputFile.write(a.sort())
-        outputFile.write(a.sort())
-inputFile.close()
-outputFile.close()
-"""
-
-"""
-print a.sort()
-print b.sort()
-print c.sort()
-"""
-
-
-#aS = a.sort()
-"""
-bS = b.sort()
-cS = c.sort()
-"""
+def bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3])):
+    pref1 = a[:a.lfind('.')]
+    pref2 = b[:b.lfind('.')]
+    pref3 = c[:c.lfind('.')]
+    outFileName = pref1 + '.' + pref2 + '.' + pref3 + '.' +'.union.bedgraph'
+    x = pybedtools.BedTool()
+    result = x.union_bedgraphs(i=[a.fn, b.fn, c.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
+    print result
+    result.saveas(outFileName)
 
 if __name__ == "__main__":
     BedgraphToUnion(callFiles)
 
-# import sys
+#
 # BedgraphToUnion(int(sys.argv[1]))
 
 
-#print aS
 
-#x = pybedtools.BedTool()
-#>>> a = pybedtools.example_bedtool('a.bed')
-#>>> b = pybedtools.example_bedtool('b.bed')
-#result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
-#print result
+
+
 
 
 #call2properBedgraph(callFiles)
