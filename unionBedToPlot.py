@@ -1,7 +1,7 @@
 __author__ = 'sgordon007'
 
 import pybedtools
-
+import sys
 
 callFiles = []
 fileList = open('fastq_calling.bed.list.txt', 'r')
@@ -13,62 +13,30 @@ def BedgraphToUnion(callFiles):
     """Takes a list of genotype files with only one column for pos and converts them to proper bedgraph format to be sorted"""
     for callFile in callFiles:
         f = callFile.rstrip()
-        print f
+        input_new = f[:f.rfind('.')]+'.bedgraph'
+        a = pybedtools.BedTool(input_new).sort()
         outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
-        print outFileName
-"""
-        open(outFileName, 'w').close()
-        outputFile = open(outFileName, 'w')
-saveas('snps-in-exons.bed')
+        print 'creating:' + outFileName
+        a.saveas(outFileName)
 
-a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
-b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
-c = pybedtools.BedTool('BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bedgraph')
-#print (a).count()
+def bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3])):
+    aT = pybedtools.BedTool(a)
+    bT = pybedtools.BedTool(b)
+    cT = pybedtools.BedTool(c)
+    pref1 = a.split('.')[0]
+    pref2 = b.split('.')[0]
+    pref3 = c.split('.')[0]
+    outFileName = pref1 + '.' + pref2 + '.' + pref3 + '.' +'.union.bedgraph'
+    x = pybedtools.BedTool()
+    result = x.union_bedgraphs(i=[aT.fn, bT.fn, cT.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
+    print result
+    result.saveas(outFileName)
 
-        outputFile.write(a.sort())
-        outputFile.write(a.sort())
-        outputFile.write(a.sort())
-inputFile.close()
-outputFile.close()
-"""
-
-"""
-print a.sort()
-print b.sort()
-print c.sort()
-"""
+if __name__ == "__main__":
+    # BedgraphToUnion(callFiles)
+    bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]))
 
 
-#aS = a.sort()
-"""
-bS = b.sort()
-cS = c.sort()
-"""
-
-BedgraphToUnion(callFiles)
-
-
-#print aS
-
-#x = pybedtools.BedTool()
-#>>> a = pybedtools.example_bedtool('a.bed')
-#>>> b = pybedtools.example_bedtool('b.bed')
-#result = x.union_bedgraphs(i=[aS.fn, bS.fn, cS.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
-#print result
-
-
-#call2properBedgraph(callFiles)
-
-
-#bedAnalyze = BedTool('%s.bed'%(syntenicInputFiles[0][:syntenicInputFiles[0].rfind('.')])).sort()
-
-    # old debug method...
-    #stop=1 #pause here and drag bed file to new location
-
-    ###########
-    #return bedAnalyze # this is our BedTool object
-
-#u = [a,b,c]
-#print u
-#uBG = pybedtools.bedtool.BedTool.union_bedgraphs(a)
+#
+# BedgraphToUnion(int(sys.argv[1]))
+# unionBedToPlot.py BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.sorted.bedgraph BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.sorted.bedgraph BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.sorted.bedgraph
