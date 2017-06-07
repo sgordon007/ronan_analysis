@@ -14,13 +14,16 @@ def BedgraphToUnion(callFiles):
     for callFile in callFiles:
         f = callFile.rstrip()
         input_new = f[:f.rfind('.')]+'.bedgraph'
-        print input_new
+        # print input_new
+        a = pybedtools.BedTool(input_new)
         outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
-        print outFileName
+        # print outFileName
+        a.saveas(outFileName)
+        
 """
         open(outFileName, 'w').close()
         outputFile = open(outFileName, 'w')
-saveas('snps-in-exons.bed')
+
 
 a = pybedtools.BedTool('BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bedgraph')
 b = pybedtools.BedTool('BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bedgraph')
