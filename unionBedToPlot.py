@@ -26,7 +26,7 @@ def bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3])):
     pref1 = a.split('.')[0]
     pref2 = b.split('.')[0]
     pref3 = c.split('.')[0]
-    outFileName = pref1 + '.' + pref2 + '.' + pref3 + '.' +'.union.bedgraph'
+    outFileName = pref1 + '.' + pref2 + '.' + pref3 + '.' + 'union.bedgraph'
     x = pybedtools.BedTool()
     result = x.union_bedgraphs(i=[aT.fn, bT.fn, cT.fn], g="GENE_LENGTH_Brachypodium_hybridum.mainGenome.scaffolds.gapfilled.091816.fasta")
     print result
