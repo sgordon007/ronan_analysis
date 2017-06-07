@@ -30,28 +30,9 @@ def bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3])):
     result.saveas(outFileName)
 
 if __name__ == "__main__":
-    BedgraphToUnion(callFiles)
+    # BedgraphToUnion(callFiles)
+    bed_union(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]))
+
 
 #
 # BedgraphToUnion(int(sys.argv[1]))
-
-
-
-
-
-
-
-#call2properBedgraph(callFiles)
-
-
-#bedAnalyze = BedTool('%s.bed'%(syntenicInputFiles[0][:syntenicInputFiles[0].rfind('.')])).sort()
-
-    # old debug method...
-    #stop=1 #pause here and drag bed file to new location
-
-    ###########
-    #return bedAnalyze # this is our BedTool object
-
-#u = [a,b,c]
-#print u
-#uBG = pybedtools.bedtool.BedTool.union_bedgraphs(a)
