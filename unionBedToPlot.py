@@ -13,7 +13,8 @@ def BedgraphToUnion(callFiles):
     """Takes a list of genotype files with only one column for pos and converts them to proper bedgraph format to be sorted"""
     for callFile in callFiles:
         f = callFile.rstrip()
-        print f
+        input_new = f[:f.rfind('.')]+'.bedgraph'
+        print input_new
         outFileName = f[:f.rfind('.')]+'.sorted.bedgraph'
         print outFileName
 """
