@@ -2,32 +2,50 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('BhD1.BTNCA.BTNCX.BTNGT.union.bedgraph', sep='\t', header=None, lineterminator='\n')
-df.columns = ['chr', 'start', 'stop', 'BTNCA', 'BTNCX', 'BTNGT']
+df = pd.read_csv('BhD1.BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bed.bedgraph', sep='\t', header=None, lineterminator='\n')
+df.columns = ['chr', 'start', 'stop', 'UCXX', 'PNWH', 'HET']
 test_data = df.head()
 print test_data
 
 
-BTNCA = (df['start'], df['BTNCA'])
+to_subset = ['UCXX', 'PNWH', 'HET']
 
-BTNCX = (df['start'], df['BTNCX'])
+df2 = df[to_subset]
 
-BTNGT = (df['start'], df['BTNGT'])
 
-data = (BTNCA, BTNCX, BTNGT)
+UCXX = (df['start'], df['UCXX'])
+
+PNWH = (df['start'], df['PNWH'])
+
+HET = (df['start'], df['HET'])
+
+data = (UCXX, PNWH, HET)
 colors = ("red", "green", "blue")
-groups = ("BTNCA", "BTNCX", "BTNGT")
+groups = ("UCXX", "PNWH", "HET")
 
 # Create plot
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
 
-for data, color, group in zip(data, colors, groups):
-    x, y = data
-    ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+### this plot scatterplot OK
+# for data, color, group in zip(data, colors, groups):
+#     x, y = data
+#     ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+#
+# plt.title('Matplot scatter plot')
+# plt.legend(loc=2)
+# plt.show()
 
-plt.title('Matplot scatter plot')
-plt.legend(loc=2)
+#
+# for data, color, group in zip(data, colors, groups):
+#     x, y = data
+#     ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+#
+# plt.title('Matplot scatter plot')
+# plt.legend(loc=2)
+# plt.show()
+
+df2.plot(kind='area', stacked=False)
 plt.show()
 
 
@@ -40,10 +58,7 @@ plt.show()
 
 
 
-#
-# to_subset = ['start', 'BTNCA', 'BTNCX', 'BTNGT']
-#
-# df = df[to_subset]
+
 #
 # df2 = DataFrame(df, index=
 #
