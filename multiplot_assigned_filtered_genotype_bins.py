@@ -24,7 +24,7 @@ def geno_multi_read(a, b, c):
     # subset columns to plot for lib1
     to_subset = ['assigned_geno']
     df1 = df1[to_subset]
-    df1.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, 2.0, 0.0], inplace=True)
+    df1.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, -1.0, 0.0], inplace=True)
 
     # Create a area plot for lib1
     fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7,11))
@@ -38,7 +38,7 @@ def geno_multi_read(a, b, c):
     # subset columns to plot for lib1
     to_subset = ['assigned_geno']
     df2 = df2[to_subset]
-    df2.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, 2.0, 0.0], inplace=True)
+    df2.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, -1.0, 0.0], inplace=True)
 
     # Create a area plot for lib2
     df2.plot(ax=axes[1]); axes[1].set_title('10xRXN'); plt.xlabel('physical distance (x10 kbp)'); plt.ylabel('genotype freq')
@@ -51,7 +51,7 @@ def geno_multi_read(a, b, c):
     # subset columns to plot for lib1
     to_subset = ['assigned_geno']
     df3 = df3[to_subset]
-    df3.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, 2.0, 0.0], inplace=True)
+    df3.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [0.2, 1.0, -1.0, 0.0], inplace=True)
 
     # Create a area plot for lib1
     df3.plot(ax=axes[2]); axes[2].set_title('20xRXN'); plt.xlabel('physical distance (x10 kbp)'); plt.ylabel('genotype freq')

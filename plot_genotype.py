@@ -19,23 +19,23 @@ data = (UCXX, PNWH, HET)
 colors = ("red", "green", "blue")
 groups = ("UCXX", "PNWH", "HET")
 
-# Create a area plot
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
-df2.plot(kind='area', stacked=False)
-plt.show()
-
-
-# ### this alternative plot scatterplot OK
+# # Create a area plot
 # fig = plt.figure()
 # ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
-# for data, color, group in zip(data, colors, groups):
-#     x, y = data
-#     ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
-#
-# plt.title('Matplot scatter plot')
-# plt.legend(loc=2)
+# df2.plot(kind='area', stacked=False)
 # plt.show()
+
+
+### this alternative plot scatterplot OK
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
+for data, color, group in zip(data, colors, groups):
+    x, y = data
+    ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+
+plt.title('Matplot scatter plot')
+plt.legend(loc=2)
+plt.show()
 
 
 
