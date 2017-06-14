@@ -42,29 +42,35 @@ def geno_multi_read(a, b, c):
     df1_HET = df1[df1.iloc[:, 1].str.contains("HET")]
     df1_HET.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
 
-    # df1_UCXX = df1_UCXX.astype(float)
-    # df1_PNWH = df1_PNWH.astype(float)
-    # df1_HET = df1_HET.astype(float)
+    print(df1_UNK)
 
-    # test_data = df1_UCXX.head()
-    # print test_data
-    #
-    # data = (df1_UCXX, df1_PNWH, df1_HET)
-    # colors = ("red", "green", "blue")
-    # groups = ("df1_UCXX", "PNWH", "HET")
+    df1_UCXX = df1_UCXX.astype(float)
+    df1_PNWH = df1_PNWH.astype(float)
+    df1_HET = df1_HET.astype(float)
 
-    # ## this alternative plot scatterplot OK
-    # fig = plt.figure()
-    # ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
-    # for data, color, group in zip(data, colors, groups):
-    #     x, y = data
-    #     print x
-    #     print y
-    #     ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
-    #
-    # plt.title('Matplot scatter plot')
-    # plt.legend(loc=2)
-    # plt.show()
+    UCXX = (df1_UCXX.iloc[:, 0], df1_UCXX.iloc[:, 1])
+    PNWH = (df1_PNWH.iloc[:, 0], df1_PNWH.iloc[:, 1])
+    HET = (df1_HET.iloc[:, 0], df1_HET.iloc[:, 1])
+
+
+    test_data = df1_UCXX.head()
+    print test_data
+
+    data = (UCXX, PNWH, HET)
+    colors = ("red", "green", "blue")
+    groups = ("UCXX", "PNWH", "HET")
+
+    ## this alternative plot scatterplot OK
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+
+    for data, color, group in zip(data, colors, groups):
+        x, y = data
+        ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+
+    plt.title('Matplot scatter plot')
+    plt.legend(loc=2)
+    plt.show()
 
     # # Create a area plot for lib1
     # fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7,11))
