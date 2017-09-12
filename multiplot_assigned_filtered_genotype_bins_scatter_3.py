@@ -192,7 +192,7 @@ def geno_multi_read(a, b, c, d):
 
 
 if __name__ == "__main__":
-    geno_multi_read(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]), d=str(sys.argv[3]))
+    geno_multi_read(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]), d=str(sys.argv[4]))
 
 
 # geno_multi_read('BhD1.BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bed.bedgraph', 'BhD1.BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bed.bedgraph', 'BhD1.BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bed.bedgraph')
