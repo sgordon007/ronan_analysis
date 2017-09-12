@@ -42,9 +42,9 @@ def geno_multi_read(a, b, c, d):
     groups = ("UCXX", "PNWH", "HET")
 
     ### try to modify plot type:
-    fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7, 11))
+    fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(7, 11))
     ax=axes[0]
-    ax.set_title('1xRXN')
+    ax.set_title('previous data')
     # plt.xlabel('physical distance (x10 kbp)')
     # plt.ylabel('genotype freq')
 
@@ -86,7 +86,7 @@ def geno_multi_read(a, b, c, d):
     ### try to modify plot type:
     # fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7, 11))
     ax=axes[1]
-    ax.set_title('10xRXN')
+    ax.set_title('1xRXN')
     # plt.xlabel('physical distance (x10 kbp)')
     # plt.ylabel('genotype freq')
 
@@ -131,7 +131,7 @@ def geno_multi_read(a, b, c, d):
     ### try to modify plot type:
     # fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7, 11))
     ax = axes[2]
-    ax.set_title('20xRXN')
+    ax.set_title('10xRXN')
     # plt.xlabel('physical distance (x10 kbp)')
     # plt.ylabel('genotype freq')
 
@@ -140,9 +140,9 @@ def geno_multi_read(a, b, c, d):
         ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group); plt.xlabel('physical distance (x10 kbp)'); plt.ylabel('genotype freq')
 
     # read in the fourth lib
-    df4 = pd.read_csv(c, sep='\t', header=None, lineterminator='\n')
+    df4 = pd.read_csv(d, sep='\t', header=None, lineterminator='\n')
 
-    df4 = df4.iloc[:, [1, 4]]
+    df4 = df4.iloc[:, [1, 3]]
 
     df4_UNK = df4[df4.iloc[:, 1].str.contains("UNK")]
     df4_UNK.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
@@ -167,7 +167,7 @@ def geno_multi_read(a, b, c, d):
 
     ### try to modify plot type:
     # fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7, 11))
-    ax = axes[2]
+    ax = axes[3]
     ax.set_title('20xRXN')
     # plt.xlabel('physical distance (x10 kbp)')
     # plt.ylabel('genotype freq')
