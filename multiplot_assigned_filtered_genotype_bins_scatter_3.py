@@ -13,7 +13,7 @@ import sys
 
 
 
-def geno_multi_read(a, b, c):
+def geno_multi_read(a, b, c, d):
 
     # read in the first lib
     print 'working on file:' + a
@@ -139,6 +139,45 @@ def geno_multi_read(a, b, c):
         x, y = data
         ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group); plt.xlabel('physical distance (x10 kbp)'); plt.ylabel('genotype freq')
 
+    # read in the fourth lib
+    df4 = pd.read_csv(c, sep='\t', header=None, lineterminator='\n')
+
+    df4 = df4.iloc[:, [1, 4]]
+
+    df4_UNK = df4[df4.iloc[:, 1].str.contains("UNK")]
+    df4_UNK.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
+    df4_UCXX = df4[df4.iloc[:, 1].str.contains("UCXX")]
+    df4_UCXX.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
+    df4_PNWH = df4[df4.iloc[:, 1].str.contains("PNWH")]
+    df4_PNWH.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
+    df4_HET = df4[df4.iloc[:, 1].str.contains("HET")]
+    df4_HET.replace(['UNK', 'UCXX', 'PNWH', 'HET'], [1.0, 1.0, -1.0, 0.0], inplace=True)
+
+    df4_UCXX = df4_UCXX.astype(float)
+    df4_PNWH = df4_PNWH.astype(float)
+    df4_HET = df4_HET.astype(float)
+
+    UCXX = (df4_UCXX.iloc[:, 0], df4_UCXX.iloc[:, 1].cumsum())
+    PNWH = (df4_PNWH.iloc[:, 0], df4_PNWH.iloc[:, 1].cumsum())
+    HET = (df4_HET.iloc[:, 0], df4_HET.iloc[:, 1].cumsum())
+
+    data = (UCXX, PNWH, HET)
+    colors = ("red", "green", "blue")
+    groups = ("UCXX", "PNWH", "HET")
+
+    ### try to modify plot type:
+    # fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(7, 11))
+    ax = axes[2]
+    ax.set_title('20xRXN')
+    # plt.xlabel('physical distance (x10 kbp)')
+    # plt.ylabel('genotype freq')
+
+    for data, color, group in zip(data, colors, groups):
+        x, y = data
+        ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group);
+        plt.xlabel('physical distance (x10 kbp)');
+        plt.ylabel('genotype freq')
+
 
     # # Create a area plot for lib1
     # df3.plot(ax=axes[2]); axes[2].set_title('20xRXN'); plt.xlabel('physical distance (x10 kbp)'); plt.ylabel('genotype freq')
@@ -153,7 +192,7 @@ def geno_multi_read(a, b, c):
 
 
 if __name__ == "__main__":
-    geno_multi_read(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]))
+    geno_multi_read(a=str(sys.argv[1]), b=str(sys.argv[2]), c=str(sys.argv[3]), d=str(sys.argv[3]))
 
 
 # geno_multi_read('BhD1.BTNCA.11436.8.207067.ACTCGCT-TATCCTC.fastq_calling.bed.bedgraph', 'BhD1.BTNCX.11436.8.207067.GGAGCTA-CGTCTAA.fastq_calling.bed.bedgraph', 'BhD1.BTNGT.11436.8.207067.CGGAGCC-GTAAGGA.fastq_calling.bed.bedgraph')
